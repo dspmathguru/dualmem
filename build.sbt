@@ -6,7 +6,7 @@ ThisBuild / organization     := "Cephasonics"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "cs-beamer",
+    name := "memory",
     libraryDependencies ++= Seq(
       "edu.berkeley.cs" %% "chisel3" % "3.5.0",
       "edu.berkeley.cs" %% "chiseltest" % "0.5.0" % "test"
