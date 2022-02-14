@@ -59,8 +59,8 @@ class PIDualMemoryTest extends AnyFreeSpec with ChiselScalatestTester {
   }
 
   "Tests PI write and then read to PIDualMemory" in {
-    test(new PIDualMemory(addrBW, depth, dataBW)).withAnnotations(Seq(VerilatorBackendAnnotation, WriteVcdAnnotation)) { dut =>
-      fork { testPIPort(dut.piPort, dut.clock) }
+    test(new PIDualMemory(dataBW, addrBW, depth)).withAnnotations(Seq(VerilatorBackendAnnotation, WriteVcdAnnotation)) { dut =>
+      testPIPort(dut.piPort, dut.clock)
       testMemPort(dut.memPort, dut.clock)
       dut.clock.step(5)
     }
