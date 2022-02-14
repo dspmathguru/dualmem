@@ -12,7 +12,7 @@ module DualPortRAM
 
    initial begin
     for (i = 0; i < 2**ADDR_WIDTH; i = i + 1) begin
-      ram[i] = '{default:2'b00};
+      ram[i] = {default:2'b00};
     end
    end
    
