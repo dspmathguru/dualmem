@@ -1,5 +1,5 @@
 module DualPortRAM
-#(parameter DATA_WIDTH = 16, ADDR_WIDTH = 10)
+#(parameter DATA_WIDTH = 8, ADDR_WIDTH = 10)
 (
  input [(DATA_WIDTH-1):0]      data_a, data_b,
  input [(ADDR_WIDTH-1):0]      addr_a, addr_b,

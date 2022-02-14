@@ -3,17 +3,17 @@ package cs.pi
 import chisel3._
 import chisel3.util._
 
-class DualPortRAM extends BlackBox with HasBlackBoxResource {
+class DualPortRAM(dataBW: Int, addrBW: Int) extends BlackBox(Map("DATA_WIDTH" -> dataBW, "ADDR_WIDTH" -> addrBW)) with HasBlackBoxResource {
   val io = IO(new Bundle {
-    val data_a = Input(UInt(16.W))
-    val data_b = Input(UInt(16.W))
-    val addr_a = Input(UInt(10.W))
-    val addr_b = Input(UInt(10.W))
+    val data_a = Input(UInt(dataBW.W))
+    val data_b = Input(UInt(dataBW.W))
+    val addr_a = Input(UInt(addrBW.W))
+    val addr_b = Input(UInt(addrBW.W))
     val we_a = Input(Bool())
     val we_b = Input(Bool())
     val clock = Input(Clock())
-    val q_a = Output(UInt(16.W))
-    val q_b = Output(UInt(16.W))
+    val q_a = Output(UInt(dataBW.W))
+    val q_b = Output(UInt(dataBW.W))
   })
   addResource("/DualPortRAM.v")
 }
@@ -22,7 +22,7 @@ class PIDualMemory(dataBW: Int = 16, addrBW: Int = 10, depth: Int = 1024) extend
   val piPort = IO(new PIIO(dataBW, addrBW))
   val memPort = IO(new MemIO(dataBW, addrBW))
 
-  val ram = Module(new DualPortRAM)
+  val ram = Module(new DualPortRAM(dataBW, addrBW))
   ram.io.clock := clock
 
   // PI port

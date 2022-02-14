@@ -5,12 +5,12 @@ import chiseltest._
 import org.scalatest.freespec.AnyFreeSpec
 
 class PIDualMemoryTest extends AnyFreeSpec with ChiselScalatestTester {
-  val addrBW: Int = 10
+  val addrBW: Int = 12
   val depth: Int = 1 << addrBW
   val dataBW: Int = 16
   val dataDepth = 1 << addrBW
 
-  val testLength = 1000
+  val testLength = dataDepth - 10
 
   val rand = scala.util.Random
 
